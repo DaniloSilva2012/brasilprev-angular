@@ -1,0 +1,55 @@
+<div class="container" *ngIf="card">
+    <div class="card-container card mx-auto py-3 px-md-5">
+        <h1 class="card-header">{{card.name}} - Mais informações</h1>
+        <div class="card-body">
+            <div class="row row-cols-12">
+                <div class="pokemon-card col-md-6 col-lg-4 col-sm-12 col-xs-12">
+                    <img v-lazyload src='{{card.imageUrl}}' alt='{{card.name}}' title='{{card.name}}' />
+                </div>
+                <div class="col-md-6 col-lg-8 col-sm-12 col-xs-12 table-responsive">
+                    <table class="table table-hover">
+                        <tbody>
+                            <tr *ngFor="let attack of card.attacks">
+                                <td scope="row">
+                                    <div class="card">
+                                        <h4>attack:</h4>
+                                        <ul>
+                                            <li *ngFor="let pos of attacksProps">
+                                                {{ pos }} {{ attack[pos] }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr *ngFor="let resistances of card.resistances">
+                                <td scope="row">
+                                    <div class="card">
+                                        <h4>resistances:</h4>
+                                        <ul>
+                                            <li *ngFor="let pos of resistancesProps">
+                                                {{ pos }}: {{ resistances[pos] }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr *ngFor="let weaknesses of card.weaknesses">
+                                <td scope="row">
+                                    <div class="card">
+                                        <h4>weaknesses:</h4>
+                                        <ul>
+                                            <li *ngFor="let pos of weaknessesProps">
+                                                {{ pos }}: {{ weaknesses[pos] }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <a routerLink="/" class="btn btn-primary">Home</a>
+        </div>
+    </div>
+</div>

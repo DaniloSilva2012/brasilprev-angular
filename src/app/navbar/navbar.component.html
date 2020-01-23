@@ -1,0 +1,26 @@
+<nav class="row navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand col-xs-12 col-sm-2" routerLink="/">Pokedex</a>
+    <div class="col-xs-12 col-sm-9 row">
+        <div class="input-group justify-content-end">
+            <input type="text" class="form-control" [formControl]="queryField" (click.enter)="filterPokemons()"
+                placeholder="Buscar pokemon específico" aria-label="search" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-light" type="button" (click)="filterPokemons()">Buscar</button>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-9 row resultsSearch">
+            <ul>
+                <li *ngFor="let result of results">
+                    <a routerLink="/pokemon/{{result.id}}" (click)="clearResults()">
+                        {{ result.name }}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</nav>
+
+<div class="row alert alert-warning" role="alert" *ngIf="!!results && !!results[0]">
+    <p>Nenhum resultado encontrado para sua busca</p>
+</div>
